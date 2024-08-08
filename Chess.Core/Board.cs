@@ -9,6 +9,12 @@ namespace Chess.Core
         Stalemate
     }
 
+    public enum GameType
+    {
+        Default,
+        _960
+    }
+
     public class Board
     {
         #region delegates / events
@@ -68,7 +74,22 @@ namespace Chess.Core
                 _whiteKingLocation = new BoardLocation(7, 4);
             }
         }
-         
+
+        public Board(int size, GameType type) {
+            _tiles = new Tile[size, size];
+            Size = size;
+            CreateTiles(size, size);
+
+            if (type == GameType.Default)
+            {
+                AddDefaultPieces();
+                _blackKingLocation = new BoardLocation(0, 4);
+                _whiteKingLocation = new BoardLocation(7, 4);
+            } else if (type == GameType._960) {
+                Add960Pieces();
+            }
+        }
+        
         // overload to allow custom board
         public Board(Tile[,] tiles)
         {
@@ -137,6 +158,83 @@ namespace Chess.Core
                             _tiles[i, j].Piece = new Queen('b', i, j); // adds black queen
                         if (j == 4)
                             _tiles[i, j].Piece = new King('b', i, j); // adds black king
+                    }
+                }
+            }
+        }
+
+        private void Add960Pieces()
+        {
+            Random rand = new Random();
+
+            List<char> pieces = new List<char> {'r', 'r', 'n', 'n', 'b', 'b', 'q', 'k'};
+            List<char> order = new List<char>();
+            for (int k = 0; k < 8; k++) {
+                int randIndex = rand.Next(0, pieces.Count);
+                order.Add(pieces[randIndex]);
+                pieces.RemoveAt(randIndex);
+            }
+
+            //loop through each tile in 2d array and add pieces to board tiles
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (i == 1)
+                        _tiles[i, j].Piece = new Pawn('b', i, j); // adds 8 player black pawns to 2nd row
+                    if (i == 6)
+                        _tiles[i, j].Piece = new Pawn('w', i, j); // adds 8 white pawns to 7th row
+
+
+                    // player 1's backrow
+                    if (i == 7)
+                    {
+                        for (int k = 0; k < order.Count; k++) {
+                            switch (order[k]) {
+                                case 'r':
+                                    _tiles[i, k].Piece = new Rook('w', i, k);
+                                    break;
+                                case 'n':
+                                    _tiles[i, k].Piece = new Knight('w', i, k);
+                                    break;
+                                case 'b':
+                                    _tiles[i, k].Piece = new Bishop('w', i, k);
+                                    break;
+                                case 'q':
+                                    _tiles[i, k].Piece = new Queen('w', i, k);
+                                    break;
+                                case 'k':
+                                    _tiles[i, k].Piece = new King('w', i, k);
+                                    _whiteKingLocation = new BoardLocation(7, k);
+                                    break;
+                            }
+                        }
+                        
+                    }
+
+                    // player 2's backrow
+                    if (i == 0)
+                    {
+                        for (int k = 0; k < order.Count; k++) {
+                            switch (order[k]) {
+                                case 'r':
+                                    _tiles[i, k].Piece = new Rook('b', i, k);
+                                    break;
+                                case 'n':
+                                    _tiles[i, k].Piece = new Knight('b', i, k);
+                                    break;
+                                case 'b':
+                                    _tiles[i, k].Piece = new Bishop('b', i, k);
+                                    break;
+                                case 'q':
+                                    _tiles[i, k].Piece = new Queen('b', i, k);
+                                    break;
+                                case 'k':
+                                    _tiles[i, k].Piece = new King('b', i, k);
+                                    _blackKingLocation = new BoardLocation(0, k);
+                                    break;
+                            }
+                        }
                     }
                 }
             }

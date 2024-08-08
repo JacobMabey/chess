@@ -30,6 +30,7 @@ partial class FormLauncher
     {
         pictureBox1 = new PictureBox();
         btnPlayerVsPlayer = new Button();
+        btnPvP960 = new Button();
         btnPlayerVsAI = new Button();
         btnAIVsAI = new Button();
         btnJoinServer = new Button();
@@ -60,7 +61,7 @@ partial class FormLauncher
         btnPlayerVsPlayer.FlatStyle = FlatStyle.Flat;
         btnPlayerVsPlayer.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
         btnPlayerVsPlayer.ForeColor = Color.White;
-        btnPlayerVsPlayer.Location = new Point(346, 315);
+        btnPlayerVsPlayer.Location = new Point(346, 253);
         btnPlayerVsPlayer.Margin = new Padding(6);
         btnPlayerVsPlayer.Name = "btnPlayerVsPlayer";
         btnPlayerVsPlayer.Size = new Size(229, 49);
@@ -68,6 +69,23 @@ partial class FormLauncher
         btnPlayerVsPlayer.Text = "Player vs Player";
         btnPlayerVsPlayer.UseVisualStyleBackColor = false;
         btnPlayerVsPlayer.Click += btnPlayerVsPlayer_Click;
+        // 
+        // btnPvP960
+        // 
+        btnPvP960.BackColor = Color.DodgerBlue;
+        btnPvP960.FlatAppearance.BorderColor = Color.FromArgb(255, 128, 128);
+        btnPvP960.FlatAppearance.BorderSize = 0;
+        btnPvP960.FlatStyle = FlatStyle.Flat;
+        btnPvP960.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+        btnPvP960.ForeColor = Color.White;
+        btnPvP960.Location = new Point(346, 315);
+        btnPvP960.Margin = new Padding(6);
+        btnPvP960.Name = "btnPvP960";
+        btnPvP960.Size = new Size(229, 49);
+        btnPvP960.TabIndex = 1;
+        btnPvP960.Text = "PvP 960";
+        btnPvP960.UseVisualStyleBackColor = false;
+        btnPvP960.Click += btnPvP960_Click;
         // 
         // btnPlayerVsAI
         // 
@@ -173,6 +191,7 @@ partial class FormLauncher
         Controls.Add(btnJoinServer);
         Controls.Add(btnAIVsAI);
         Controls.Add(btnPlayerVsAI);
+        Controls.Add(btnPvP960);
         Controls.Add(btnPlayerVsPlayer);
         Controls.Add(pictureBox2);
         Controls.Add(pictureBox1);
@@ -191,6 +210,7 @@ partial class FormLauncher
 
     private PictureBox pictureBox1;
     private Button btnPlayerVsPlayer;
+    private Button btnPvP960;
     private Button btnPlayerVsAI;
     private Button btnAIVsAI;
     private Button btnJoinServer;

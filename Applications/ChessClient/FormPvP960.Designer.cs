@@ -1,6 +1,6 @@
 ﻿namespace ChessClient;
 
-partial class FormPvP960
+partial class FormPlayerVsPlayer
 {
     /// <summary>
     ///  Required designer variable.

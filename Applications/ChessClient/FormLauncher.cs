@@ -24,6 +24,12 @@ public partial class FormLauncher : Form
         FormPlayerVsPlayer frmPvP = new FormPlayerVsPlayer();
         frmPvP.Show();
     }
+    
+    private void btnPvP960_Click(object sender, EventArgs e)
+    {
+        FormPvP960 frmPvP = new FormPvP960();
+        frmPvP.Show();
+    }
 
     private void btnPlayerVsAI_Click(object sender, EventArgs e)
     {
